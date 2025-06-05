@@ -46,7 +46,7 @@ export class EntityManager extends Component {
       const sprite = this.addComponent(Sprite)
       sprite.sizeMode = Sprite.SizeMode.CUSTOM
 
-      const transform = this.addComponent(UITransform)
+      const transform = this.getComponent(UITransform)
       transform.setContentSize(TILE_WIDTH * 4,TILE_HEIGH * 4)
 
       this.x = params.x

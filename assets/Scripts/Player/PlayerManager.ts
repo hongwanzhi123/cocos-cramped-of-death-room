@@ -8,6 +8,7 @@ import EventManager from '../../Runtime/EventManager';
 import { PlayerStateMachine } from './PlayerStateMachine';
 import { EntityManager } from '../../Base/EntityManager';
 import DataManager from '../../Runtime/DataManager';
+import { IENTITY } from '../../Levels';
 const { ccclass, property } = _decorator;
 
 
@@ -20,12 +21,11 @@ export class PlayerManager extends EntityManager {
   private readonly speed = 1/10
 
 
-   async init(){
+   async init(params:IENTITY){
 
       this.fsm = this.addComponent(PlayerStateMachine)
       await this.fsm.init()
-      super.init({x:4,y:5,type:ENTITY_TYPE_ENUM.PLAYER,direction:DIRECTION_ENUM.TOP,state:ENTITY_STATE_ENUM.IDLE
-})
+      super.init(params)
 
     this.targerX = this.x
     this.targerY = this.y
@@ -74,7 +74,9 @@ export class PlayerManager extends EntityManager {
 
       const id = this.willAttack(inputDirection)
       if(id){
+
         EventManager.Instance.emit(EVENT_ENUM.ATTACK_ENEMY,id)
+        EventManager.Instance.emit(EVENT_ENUM.DOOR_OPEN)
         return
       }
 
