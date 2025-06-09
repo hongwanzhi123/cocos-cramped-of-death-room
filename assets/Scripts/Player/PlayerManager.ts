@@ -8,7 +8,7 @@ import EventManager from '../../Runtime/EventManager';
 import { PlayerStateMachine } from './PlayerStateMachine';
 import { EntityManager } from '../../Base/EntityManager';
 import DataManager from '../../Runtime/DataManager';
-import { IENTITY } from '../../Levels';
+import { IEntity } from '../../Levels';
 const { ccclass, property } = _decorator;
 
 
@@ -21,7 +21,7 @@ export class PlayerManager extends EntityManager {
   private readonly speed = 1/10
 
 
-   async init(params:IENTITY){
+   async init(params:IEntity){
 
       this.fsm = this.addComponent(PlayerStateMachine)
       await this.fsm.init()
@@ -114,8 +114,9 @@ export class PlayerManager extends EntityManager {
           this.direction = DIRECTION_ENUM.TOP
         }
 
-        EventManager.Instance.emit(EVENT_ENUM.PLAYER_MOVE_END)
+
         this.state = ENTITY_STATE_ENUM.TURNLEFT
+        EventManager.Instance.emit(EVENT_ENUM.PLAYER_MOVE_END)
       }
     }
 
@@ -149,6 +150,11 @@ export class PlayerManager extends EntityManager {
 
       const {targerX:x,targerY:y,direction} = this
       const {tileInfo} = DataManager.Instance
+      const{x:doorX,y:doorY,state:doorState} = DataManager.Instance.door
+      const enemies = DataManager.Instance.enemies.filter(enemy => enemy.state !== ENTITY_STATE_ENUM.DEATH)
+      const bursts = DataManager.Instance.bursts.filter(burst => burst.state !== ENTITY_STATE_ENUM.DEATH)
+
+
       if(inputDirection === CONTROLLER_ENUM.TOP){
         if(direction === DIRECTION_ENUM.TOP){
            const playerNextY = y - 1
@@ -167,6 +173,15 @@ export class PlayerManager extends EntityManager {
             this.state = ENTITY_STATE_ENUM.BLOCKFRONT
             return true
            }
+
+          //  for(let i = 0; i<bursts.length;++i){
+
+          //   const{x:burstX,y:burstY} = bursts[i]
+          //   if((x === burstX && playerNextY === burstY) && (!nextWeaponTile || weaponTile.turnable)){
+
+          //   }
+          //  }
+
 
         }
       }else if(inputDirection === CONTROLLER_ENUM.TURNLEFT){

@@ -3,12 +3,20 @@ import level1 from "./level1";
 import level2 from "./level2";
 
 
-export interface IENTITY{
+export interface IEntity{
   x:number;
   y:number;
   type:ENTITY_TYPE_ENUM;
   direction:DIRECTION_ENUM;
   state:ENTITY_STATE_ENUM
+}
+
+export interface ISpikes{
+   x:number;
+  y:number;
+  type:ENTITY_TYPE_ENUM;
+  count:number;
+
 }
 
 export interface ITile{
@@ -18,6 +26,12 @@ export interface ITile{
 
 export interface ILevel{
   mapInfo:Array<Array<ITile>>
+  player:IEntity,
+  enemies:IEntity[],
+  spikes:ISpikes[],
+  bursts:IEntity[],
+  door:IEntity,
+
 }
 
 const levels : Record<string,ILevel>= {

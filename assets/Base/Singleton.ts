@@ -3,6 +3,7 @@ export default class Singleton{
 
   static GetInstance<T>():T{
   if(this._instance === null){
+    // this指的是调用当前方法的类，创建对象存储到_instance
     this._instance = new this()
 
   }

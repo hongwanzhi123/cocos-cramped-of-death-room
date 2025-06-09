@@ -2,8 +2,10 @@
 import { EnemynManager } from "../Base/EnemyManager"
 import Singleton from "../Base/Singleton"
 import { ITile } from "../Levels"
+import { BurstsManager } from "../Scripts/Burst/BurstManager"
 import { DoorManager } from "../Scripts/Door/DoorManager"
 import { PlayerManager } from "../Scripts/Player/PlayerManager"
+import { SpikesManager } from "../Scripts/Spikes/SpikesManager"
 import { TileManager } from "../Scripts/Tile/TileManager"
 
 
@@ -21,11 +23,15 @@ static get Instance(){
   player:PlayerManager
   door:DoorManager
   enemies:EnemynManager[]
+  bursts:BurstsManager[]
+  spikes:SpikesManager[]
 
 
   reset(){
     this.mapInfo = []
     this.tileInfo = []
+    this.bursts = []
+    this.spikes = []
     this.enemies = []
     this.door = null
     this.player = null

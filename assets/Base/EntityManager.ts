@@ -2,7 +2,7 @@
 import { _decorator, Component, Node, Sprite, UITransform , Animation, AnimationClip, animation, Vec3, SpriteFrame} from 'cc';
 
 
-import { IENTITY } from '../Levels';
+import { IEntity } from '../Levels';
 import { PlayerStateMachine } from '../Scripts/Player/PlayerStateMachine';
 import { DIRECTION_ENUM, DIRECTION_ORDER_ENUM, ENTITY_STATE_ENUM, ENTITY_TYPE_ENUM, PARAMS_NAME_ENUM } from '../Enums';
 import { TILE_HEIGH, TILE_WIDTH } from '../Scripts/Tile/TileManager';
@@ -41,7 +41,7 @@ export class EntityManager extends Component {
   }
 
 
-   async init(params:IENTITY){
+   async init(params:IEntity){
 
       const sprite = this.addComponent(Sprite)
       sprite.sizeMode = Sprite.SizeMode.CUSTOM

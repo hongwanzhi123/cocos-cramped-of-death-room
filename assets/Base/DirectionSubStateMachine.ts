@@ -5,8 +5,6 @@ import { SubStateMachine } from "./SubStateMachine"
 
 
 
-const BASE_URL = "texture/player/turnleft"
-
 export default class DirectionSubStateMachine extends SubStateMachine{
 
   run(){

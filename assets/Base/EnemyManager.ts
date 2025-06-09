@@ -5,7 +5,7 @@ import { EntityManager } from './EntityManager';
 import EventManager from '../Runtime/EventManager';
 import { DIRECTION_ENUM, ENTITY_STATE_ENUM, EVENT_ENUM } from '../Enums';
 import DataManager from '../Runtime/DataManager';
-import { IENTITY } from '../Levels';
+import { IEntity } from '../Levels';
 
 
 
@@ -17,7 +17,7 @@ export class EnemynManager extends EntityManager {
 
 
 
-   async init(params:IENTITY){
+   async init(params:IEntity){
       super.init(params)
 
       EventManager.Instance.on(EVENT_ENUM.PLAYER_MOVE_END,this.onChangeDirection,this)
