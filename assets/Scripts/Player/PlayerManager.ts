@@ -34,6 +34,12 @@ export class PlayerManager extends EntityManager {
       EventManager.Instance.on(EVENT_ENUM.ATTACK_PLAYER,this.onDeath,this)
     }
 
+    onDestroy(){
+      super.onDestroy()
+      EventManager.Instance.off(EVENT_ENUM.PLAYER_CTRL,this.inputHandle)
+      EventManager.Instance.off(EVENT_ENUM.ATTACK_PLAYER,this.onDeath)
+    }
+
     update(){
       this.updateXY()
       super.update()
