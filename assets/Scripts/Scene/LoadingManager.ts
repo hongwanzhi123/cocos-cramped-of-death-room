@@ -1,0 +1,29 @@
+
+import { _decorator, Component, director, Node, ProgressBar, resources } from 'cc';
+import FadeManager from '../../Runtime/FadeManager';
+import { SCENE_ENUM } from '../../Enums';
+
+const { ccclass, property } = _decorator;
+
+
+
+@ccclass('LoadingManager')
+export class LoadingManager extends Component {
+
+  @property(ProgressBar)
+  bar:ProgressBar = null
+
+
+  onLoad(){
+    resources.preload('texture/ctrl',(cur,total)=>{
+      this.bar.progress = cur / total
+    },()=>{
+      director.loadScene(SCENE_ENUM.start)
+    })
+  }
+
+
+
+}
+
+

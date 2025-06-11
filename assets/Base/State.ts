@@ -5,13 +5,13 @@ import { StateMachine } from "./StateMachine";
 import { sortSpriteFrame } from "../resources/Utils";
 
 
-const ANIMATION_SPEED = 1/8
+export const ANIMATION_SPEED = 1/8
 
 export default class State{
 
   private animationClip:AnimationClip
 
-  constructor(private fsm:StateMachine,private path:string,private wrapMode:AnimationClip.WrapMode = AnimationClip.WrapMode.Normal) {
+  constructor(private fsm:StateMachine,private path:string,private wrapMode:AnimationClip.WrapMode = AnimationClip.WrapMode.Normal,private speed:number = ANIMATION_SPEED) {
     this.init()
   }
 
@@ -28,13 +28,13 @@ export default class State{
       const track  = new animation.ObjectTrack(); // 创建一个向量轨道
 
       track.path = new animation.TrackPath().toComponent(Sprite).toProperty('spriteFrame'); // 指定轨道路径，即指定目标对象为 "Foo" 子节点的 "position" 属性
-      const frames:Array<[number,SpriteFrame]> = sortSpriteFrame(spriteFrames).map((item,index) => [ANIMATION_SPEED * index, item])
+      const frames:Array<[number,SpriteFrame]> = sortSpriteFrame(spriteFrames).map((item,index) => [this.speed * index, item])
       track.channel.curve.assignSorted(frames);
 
 // 最后将轨道添加到动画剪辑以应用
     this.animationClip.addTrack(track);
     this.animationClip.name = this.path
-    this.animationClip.duration = frames.length * ANIMATION_SPEED; // 整个动画剪辑的周期
+    this.animationClip.duration = frames.length * this.speed; // 整个动画剪辑的周期
     this.animationClip.wrapMode = this.wrapMode
   }
 

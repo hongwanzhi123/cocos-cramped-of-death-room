@@ -80,13 +80,15 @@ export class PlayerManager extends EntityManager {
 
       const id = this.willAttack(inputDirection)
       if(id){
-
+        EventManager.Instance.emit(EVENT_ENUM.RECORD_STEP)
+        this.state = ENTITY_STATE_ENUM.ATTACK
         EventManager.Instance.emit(EVENT_ENUM.ATTACK_ENEMY,id)
         EventManager.Instance.emit(EVENT_ENUM.DOOR_OPEN)
         return
       }
 
       if(this.willBlock(inputDirection)){
+        EventManager.Instance.emit(EVENT_ENUM.SCREEN_SHAKE)
         return
       }
 
@@ -96,19 +98,24 @@ export class PlayerManager extends EntityManager {
 
     move(inputDirection:CONTROLLER_ENUM){
 
+      EventManager.Instance.emit(EVENT_ENUM.RECORD_STEP)
 
       if(inputDirection === CONTROLLER_ENUM.TOP){
         this.targerY -= 1
                 this.isMoving = true
+                this.showSmoke(DIRECTION_ENUM.TOP)
       }else if(inputDirection === CONTROLLER_ENUM.BOTTOM){
         this.targerY += 1
             this.isMoving = true
+            this.showSmoke(DIRECTION_ENUM.BOTTOM)
       }else if(inputDirection === CONTROLLER_ENUM.LEFT){
         this.targerX -= 1
             this.isMoving = true
+            this.showSmoke(DIRECTION_ENUM.LEFT)
       }else if(inputDirection === CONTROLLER_ENUM.RIGTH){
         this.targerX += 1
             this.isMoving = true
+            this.showSmoke(DIRECTION_ENUM.RIGHT)
       }else if(inputDirection === CONTROLLER_ENUM.TURNLEFT){
         if(this.direction === DIRECTION_ENUM.TOP){
           this.direction = DIRECTION_ENUM.LEFT
@@ -222,6 +229,10 @@ export class PlayerManager extends EntityManager {
 
     onDeath(type:ENTITY_STATE_ENUM){
       this.state = type
+    }
+
+    showSmoke(type:DIRECTION_ENUM){
+      EventManager.Instance.emit(EVENT_ENUM.SHOW_SMOKE,this.x,this.y,type)
     }
 }
 

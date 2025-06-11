@@ -19,6 +19,13 @@ export enum EVENT_ENUM{
   ATTACK_PLAYER = 'ATTACK_PLAYER',
   ATTACK_ENEMY = 'ATTACK_ENEMY',
   DOOR_OPEN = 'DOOR_OPEN',
+  SHOW_SMOKE = 'SHOW_SMOKE',
+  SCREEN_SHAKE = 'SCREEN_SHAKE',
+  RECORD_STEP = 'RECORD_STEP',
+  REVOKE_STEP = 'REVOKE_STEP',
+  RESTART_LEVEL = 'RESTART_LEVEL',
+  OUT_BATTLE = 'OUT_BATTLE',
+
 }
 
 export enum CONTROLLER_ENUM{
@@ -84,6 +91,7 @@ export enum ENTITY_TYPE_ENUM{
   SPIKES_TWO = 'SPIKES_TWO',
   SPIKES_THREE = 'SPIKES_THREE',
   SPIKES_FOUR = 'SPIKES_FOUR',
+  SMOKE = 'SMOKE'
 }
 
 export enum SPIKES_TYPE_MAP_TOTAL_COUNT_ENUM{
@@ -109,4 +117,11 @@ export enum SPIKES_COUNT_MAP_NUMBER_ENUM{
   THREE = 3,
   FOUR = 4,
   FIVE = 5,
+}
+
+export enum SCENE_ENUM{
+ loading = 'loading',
+ start = 'start',
+ battle = 'battle',
+
 }
