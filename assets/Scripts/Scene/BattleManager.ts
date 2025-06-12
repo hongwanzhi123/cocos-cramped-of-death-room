@@ -11,11 +11,12 @@ import { PlayerManager } from '../Player/PlayerManager';
 import { WoodenSkeletonManager } from '../WoodenSkeleton/WoodenSkeletonManager';
 import { DoorManager } from '../Door/DoorManager';
 import { IronSkeletonManager } from '../IronSkeleton/IronSkeletonManager';
-import { BurstsManager } from '../Burst/BurstManager';
+
 import { SpikesManager } from '../Spikes/SpikesManager';
 import { SmokeManager } from '../Smoke/SmokeManager';
 import FadeManager from '../../Runtime/FadeManager';
 import { ShakeManager } from '../../UI/ShakeManager';
+import { BurstManager } from '../Burst/BurstManager';
 const { ccclass, property } = _decorator;
 
 
@@ -154,7 +155,7 @@ export class BattleManager extends Component {
         const node = createUINode()
         node.setParent(this.stage)
 
-        const burstManager = node.addComponent(BurstsManager);
+        const burstManager = node.addComponent(BurstManager);
         promise.push(burstManager.init(burst));
         DataManager.Instance.bursts.push(burstManager)
 
@@ -290,8 +291,8 @@ export class BattleManager extends Component {
     revoke(){
         const item = DataManager.Instance.records.pop()
         if(item){
-            DataManager.Instance.player.x = DataManager.Instance.player.targerX = item.player.x
-            DataManager.Instance.player.y = DataManager.Instance.player.targerY= item.player.y
+            DataManager.Instance.player.x = DataManager.Instance.player.targetX = item.player.x
+            DataManager.Instance.player.y = DataManager.Instance.player.targetY= item.player.y
             DataManager.Instance.player.state = item.player.state
             DataManager.Instance.player.direction = item.player.direction
 
