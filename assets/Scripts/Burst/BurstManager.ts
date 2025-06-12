@@ -10,13 +10,13 @@ import { EntityManager } from '../../Base/EntityManager';
 import DataManager from '../../Runtime/DataManager';
 
 import {  IEntity,  } from '../../Levels';
-import { EnemynManager } from '../../Base/EnemyManager';
+import { EnemyManager } from '../../Base/EnemyManager';
 import { BurstStateMachine } from './BurstStateMachine';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('BurstnManager')
-export class BurstsManager extends EntityManager {
+export class BurstManager extends EntityManager {
 
 
 

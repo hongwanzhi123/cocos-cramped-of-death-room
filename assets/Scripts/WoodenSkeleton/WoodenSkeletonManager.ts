@@ -10,12 +10,12 @@ import { EntityManager } from '../../Base/EntityManager';
 import DataManager from '../../Runtime/DataManager';
 import { WoodenSkeletonStateMachine } from './WoodenSkeletonStateMachine';
 import { IEntity } from '../../Levels';
-import { EnemynManager } from '../../Base/EnemyManager';
+import { EnemyManager } from '../../Base/EnemyManager';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('WoodenSkeletonManager')
-export class WoodenSkeletonManager extends EnemynManager {
+export class WoodenSkeletonManager extends EnemyManager {
 
 
 

@@ -13,7 +13,7 @@ const { ccclass, property } = _decorator;
 
 
 @ccclass('EnemyManager')
-export class EnemynManager extends EntityManager {
+export class EnemyManager extends EntityManager {
 
 
 

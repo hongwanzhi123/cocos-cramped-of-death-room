@@ -11,12 +11,12 @@ import DataManager from '../../Runtime/DataManager';
 
 import { IEntity } from '../../Levels';
 import { IronSkeletonStateMachine } from './IronSkeletonStateMachine';
-import { EnemynManager } from '../../Base/EnemyManager';
+import { EnemyManager } from '../../Base/EnemyManager';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('IronSkeletonManager')
-export class IronSkeletonManager extends EnemynManager {
+export class IronSkeletonManager extends EnemyManager {
 
 
 
